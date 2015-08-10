@@ -221,8 +221,10 @@ void playWords(int num) {
       LAudio.playFile(storageFlash,(char*)"done.wav");
       break;
   }
+  Serial.println("song picked");
   do{
     status = LAudio.getStatus();
+    Serial.println("not finished playing yet...");
   }while(status != AudioEndOfFile);
   delay(200);
 }
@@ -244,7 +246,7 @@ void getconnectInfo(){
     Serial.println("waiting HTTP response: ");
     Serial.println(errorcount);
     errorcount += 1;
-    if(errorcount > 10) {
+    if(errorcount > 50) {
       c2.stop();
       return;
     }
